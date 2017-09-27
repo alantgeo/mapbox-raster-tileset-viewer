@@ -36,7 +36,7 @@ if (loc) {
         }
     }
 } else {
-    d3.json('http://api.mapbox.com/v4/' + getParam('tileset') + '.json?access_token=' + getParam('access_token'), function (tilejson) {
+    d3.json('https://api.mapbox.com/v4/' + getParam('tileset') + '.json?access_token=' + getParam('access_token'), function (tilejson) {
         map.fitBounds([tilejson.bounds[1], tilejson.bounds[0], tilejson.bounds[3], tilejson.bounds[2]], {
             maxZoom: tilejson.maxzoom
         });
