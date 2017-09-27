@@ -6,6 +6,7 @@
         <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
         <link href='https://unpkg.com/leaflet@1.0.2/dist/leaflet.css' rel='stylesheet' />
         <script src='https://unpkg.com/leaflet@1.0.2/dist/leaflet.js'></script>
+        <script src='https://d3js.org/d3-request.v1.min.js'></script>
         <style>
             body { margin:0; padding:0; }
             #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -34,6 +35,13 @@ if (loc) {
             map.setView(new L.LatLng(lat, lon), zoom);
         }
     }
+} else {
+    d3.json('http://api.mapbox.com/v4/' + getParam('tileset') + '.json?access_token=' + getParam('access_token'), function (tilejson) {
+        map.fitBounds([tilejson.bounds[1], tilejson.bounds[0], tilejson.bounds[3], tilejson.bounds[2]], {
+            maxZoom: tilejson.maxzoom
+        });
+    });
+
 }
 
 function getParam(name) {
