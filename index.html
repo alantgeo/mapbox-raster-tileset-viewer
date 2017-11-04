@@ -21,7 +21,8 @@ var map = L.map('map', {
 
 L.tileLayer('https://{s}.tiles.mapbox.com/v4/{tileset}/{z}/{x}/{y}.png?access_token={access_token}', {
     tileset: getParam('tileset'),
-    access_token: getParam('access_token')
+    access_token: getParam('access_token'),
+    maxZoom: 22
 }).addTo(map);
 
 var loc = getParam('location');
